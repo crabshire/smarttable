@@ -2,34 +2,32 @@
 """test.py, by Chris
 This program is my first python test program
 """
-import random
-import gpiozero
+import time
+import RPi.GPIO as GPIO
 
 def main():
-    print "Guess a number between 1 and 100."
-    randomNumber = random.randint(1,100)
-    found = False   # flag variable to see if they guessed it
-    while not found:
-        userGuess = input("Your guess: ")
-        if userGuess == randomNumber:
-            print "Yay"
-            acceptable = False
-            while not acceptable:
-                userInput = raw_input("Play again? (Yes/No):")
-                if userInput == "Yes":
-                    found = False
-                    print "Guess a number between 1 and 100."
-                    randomNumber = random.randint(1,100)
-                    acceptable = True
-                elif userInput == "No":
-                    found = True
-                    acceptable = True
-                else:
-                    print "Unacceptable input!  Yes or No"
-        elif userGuess > randomNumber:
-            print "Guess lower"
-        else:
-            print "Guess higher"
+    loopcontrol = False   # flag variable to see if they guessed it
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(18, GPIO.OUT)
+    GPIO.setup(23, GPIO.IN)
+
+while not loopcontrol:
+        #GPIO.output(18, True)
+        #time.sleep(2)
+        #GPIO.output(18, False)
+        #time.sleep(1)
+	pressed = GPIO.input(23)
+	lighton = False
+	if pressed == True:
+		if lighton == True:
+			GPIO.output(18, False)
+			lighton = False
+			pressed = False
+		else:
+			GPIO.output(18, True)
+			lighton = True
+			pressed = False
 
 
 if __name__ == "__main__":
