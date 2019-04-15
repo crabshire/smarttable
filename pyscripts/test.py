@@ -8,22 +8,22 @@ import RPi.GPIO as GPIO
 def main():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(18, GPIO.OUT)
-    GPIO.setup(23, GPIO.IN)
-    GPIO.setup(24, GPIO.IN)
-    GPIO.output(18, False)
+    GPIO.setup(17, GPIO.OUT)
+    GPIO.setup(27, GPIO.IN)
+    GPIO.setup(22, GPIO.IN)
+    GPIO.output(17, False)
     lighton = False
     while True:
-        if GPIO.input(23):
+        if GPIO.input(27):
             if lighton == True:
-                GPIO.output(18, False)
+                GPIO.output(17, False)
                 lighton = False
                 time.sleep(1)
             else:
-                GPIO.output(18, True)
+                GPIO.output(17, True)
                 lighton = True
                 time.sleep(1)
-        if GPIO.input(24):
+        if GPIO.input(22):
             exit()
 if __name__ == "__main__":
     main()
