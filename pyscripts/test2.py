@@ -12,7 +12,7 @@ import threading
 #Global Variable Setup
 lighton = False
 ledrun = False
-total_LED_count = 50
+total_LED_count = 144
 brightness = 128 #0-255
 frequency = 800000 #should stay at 800k
 DMA = 5 #try 10 if 5 doesn't work
