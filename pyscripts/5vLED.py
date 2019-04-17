@@ -15,7 +15,7 @@ ledrun = False
 total_LED_count = 144
 brightness = 128 #0-255
 frequency = 800000 #should stay at 800k
-DMA = 5 #try 10 if 5 doesn't work
+DMA = 10 #try 10 if 5 doesn't work
 pin = 18 #18 is the PWM pin
 
 def led2_child():
