@@ -2,7 +2,7 @@
 """test.py, by Chris
 This program is my first python test program
 """
-from rpi_ws281x import *
+from rpi-ws281x import *
 import time
 import RPi.GPIO as GPIO
 import pigpio
