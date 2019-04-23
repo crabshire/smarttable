@@ -10,9 +10,17 @@ import os
 import threading
 
 #Global Variable Setup
+global lighton
+global ledrun
+global total_LED_count
+global brightness
+global frequency
+global DMA
+global pin
+
 lighton = False
 ledrun = False
-total_LED_count = 144
+total_LED_count = 40
 brightness = 128 #0-255
 frequency = 800000 #should stay at 800k
 DMA = 10 #try 10 if 5 doesn't work
@@ -60,18 +68,18 @@ def main():
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(22, GPIO.IN)
     GPIO.setup(18, GPIO.OUT)
-    led_thread = threading.Thread(target=led_child)
+    #led_thread = threading.Thread(target=led_child)
     strip = Adafruit_NeoPixel(total_LED_count, pin, frequency, DMA, False, brightness)
     strip.begin()
     R = 0
     G = 0
     B = 0
     while True:
-        for R in range(128):
+        for R in range(0, 128, 16):
             strip.setPixelColorRGB(LED_CHIP_NUMBER, R, G, B)
-            for G in range(128):
+            for G in range(0, 128, 16):
                 strip.setPixelColorRGB(LED_CHIP_NUMBER, R, G, B)
-                for B in range (128):
+                for B in range (0, 128, 16):
                     strip.setPixelColorRGB(LED_CHIP_NUMBER, R, G, B)
         if GPIO.input(22):
             exit()
