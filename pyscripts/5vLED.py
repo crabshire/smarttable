@@ -81,7 +81,10 @@ def main():
                 strip.setPixelColorRGB(LED_CHIP_NUMBER, R, G, B)
                 for B in range (0, 128, 16):
                     strip.setPixelColorRGB(LED_CHIP_NUMBER, R, G, B)
+                    strip.show()
         if GPIO.input(22):
+            for i in range(total_LED_count):
+                strip.setPixelColorRGH(i, 0, 0, 0)
             exit()
 if __name__ == "__main__":
     main()
